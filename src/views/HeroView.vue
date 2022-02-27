@@ -13,8 +13,8 @@
             <img class="beanslogo" src="@/assets/logo/Beans_logo.svg" alt="Beans logo">
             <div class="preview__subtitle">We makes every day full of energy and taste</div>
             <div class="preview__subtitle">Want to try our beans?</div>
-            <router-link to="/our-coffee" class="preview__btn">More</router-link>
-<!--            <a href="./coffeepage.html" class="preview__btn">More</a>-->
+<!--            <router-link to="/our-coffee" class="preview__btn">More</router-link>-->
+            <a @click.prevent="scrollInto" href="./coffeepage.html" class="preview__btn">More</a>
           </div>
         </div>
       </div>
@@ -42,13 +42,13 @@
         </div>
       </div>
     </section>
-    <section class="best">
+    <section class="best" ref="ourbest">
       <div class="container">
         <div class="title">Our best</div>
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="best__wrapper">
-              <product-card-component v-for="(item, index) in products" :key="item.id" :product="item"/>
+              <goods-card-component v-for="(item, index) in getBestsellers" :key="item.id" :good="item"/>
             </div>
           </div>
         </div>
@@ -62,31 +62,25 @@
 
 import NavbarComponent from "../components/NavbarComponent";
 import ProductCardComponent from "../components/ProductCardComponent";
+import { scrollIntoView } from "seamless-scroll-polyfill";
+import GoodsCardComponent from "../components/GoodsCardComponent";
 
 export default {
-  components: {ProductCardComponent, NavbarComponent},
+  components: {GoodsCardComponent, ProductCardComponent, NavbarComponent},
   data(){
     return {
-      products: [
-        {
-          id: 0,
-          img: 'coffee-1.jpg',
-          text: 'Solimo Coffee Beans 2kg',
-          price: '10.73$'
-        },
-        {
-          id: 1,
-          img: 'coffee-2.jpg',
-          text: 'Presto Coffee Beans 1kg',
-          price: '33.34$'
-        },
-        {
-          id: 2,
-          img: 'coffee-3.jpg',
-          text: 'AROMISTICO Coffee 1kg',
-          price: '6.99$'
-        },
-      ]
+
+    }
+  },
+  methods: {
+    scrollInto() {
+      scrollIntoView(this.$refs.ourbest, { behavior: "smooth", block: "start" });
+      console.log(this.$refs.ourbest)
+    }
+  },
+  computed: {
+    getBestsellers(){
+      return this.$store.getters['getBestsellers'];
     }
   }
 }

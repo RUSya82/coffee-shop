@@ -9,6 +9,11 @@
 </template>
 <script>
   export default {
-    props: ['product']
+    props: {
+      product: {
+        type: Object,
+        required: true
+      }
+    }
   }
 </script>
