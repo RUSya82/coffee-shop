@@ -6,14 +6,7 @@ const coffee = {
     },
     getters: {
         getCoffee(state) {
-            return state.products.filter(item => item.name
-                .toLowerCase()
-                .includes(state.searchValue.toLowerCase()))
-                .filter(item => item.country
-                    .toLowerCase()
-                    .includes((state.sortValue.toLowerCase())
-                    )
-                );
+            return state.products
         },
         getProductById(state) {
             return (id) => {
