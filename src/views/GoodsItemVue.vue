@@ -57,14 +57,10 @@ export default {
     pageName(){
       return this.$route.name;
     },
-    // isLoading(){
-    //   return  this.$store.getters["getIsLoading"];
-    // }
+
   },
   methods:{
-    // setIsLoading(data = true){
-    //   this.$store.dispatch('setIsLoading', data)
-    // }
+
   },
   beforeMount() {
     this.setIsLoading();
