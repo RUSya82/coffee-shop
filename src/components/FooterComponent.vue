@@ -17,20 +17,6 @@
                 :text="item.text"
                 :key="item.id"
             />
-            <!--            <li class=" footer__item">-->
-            <!--              <router-link :to="links[0].src">-->
-            <!--                <img :src="require(`@/assets/logo/${links[0].icon}`)" :alt="links[0].icon">-->
-            <!--              </router-link>-->
-            <!--            </li>-->
-            <!--            <li class="footer__item">-->
-            <!--              <router-link :to="links[1].src">{{links[1].text}}</router-link>-->
-            <!--            </li>-->
-            <!--            <li class="footer__item">-->
-            <!--              <router-link :to="links[2].src">{{links[2].text}}</router-link>-->
-            <!--            </li>-->
-            <!--            <li class="footer__item">-->
-            <!--              <router-link :to="links[3].src">{{links[3].text}}</router-link>-->
-            <!--            </li>-->
           </ul>
         </div>
       </div>

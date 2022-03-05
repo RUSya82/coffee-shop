@@ -1,10 +1,10 @@
 <template>
-  <div class="best__item">
-    <img :src="require(`@/assets/img/${product.img}`)" :alt="`coffee${product.img}`">
+  <div class="best__item" @click="onEmmit(product.id)">
+    <img :src="`${product.image}`" :alt="`coffee${product.image}`">
     <div class="best__item-title">
-      {{product.text}}
+      {{product.name}}
     </div>
-    <div class="best__item-price">{{product.price}}</div>
+    <div class="best__item-price">{{product.price | addCurrency}}</div>
   </div>
 </template>
 <script>
@@ -13,6 +13,11 @@
       product: {
         type: Object,
         required: true
+      }
+    },
+    methods:{
+      onEmmit(id){
+        this.$emit('onNavigate', id);
       }
     }
   }

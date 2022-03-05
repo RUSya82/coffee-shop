@@ -82,6 +82,13 @@ export default {
     getBestsellers(){
       return this.$store.getters['getBestsellers'];
     }
+  },
+  mounted() {
+    fetch('http://localhost:3000/bestsellers/')
+        .then(data => data.json())
+        .then(data => {
+          this.$store.dispatch('setBestsellers', data)
+        })
   }
 }
 

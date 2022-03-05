@@ -36,7 +36,7 @@
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
-            <goods-card-component v-for="item in getGoods" :key="item.id" :good="item"></goods-card-component>
+            <goods-card-component v-for="item in getGoods" :key="item.id" :good="item" @onNavigate="navigate"></goods-card-component>
             </div>
           </div>
         </div>
@@ -47,12 +47,27 @@
 <script>
 import NavbarComponent from "../components/NavbarComponent";
 import GoodsCardComponent from "../components/GoodsCardComponent";
+import {navigate} from "../mixins/navigate";
+
 export default {
   components: {GoodsCardComponent, NavbarComponent},
+  data(){
+    return {
+      pageName: 'goods'
+    }
+  },
   computed: {
     getGoods(){
       return this.$store.getters['getGoods'];
     }
-  }
+  },
+  mounted() {
+    fetch('http://localhost:3000/goods/')
+        .then(data => data.json())
+        .then(data => {
+          this.$store.dispatch('setGoods', data)
+        })
+  },
+  mixins: [navigate]
 }
 </script>

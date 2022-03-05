@@ -55,7 +55,7 @@
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
-              <product-card-component v-for="(item, index) in getCoffee" :key="item.id" :product="item" :class="`shop__item`"/>
+              <product-card-component @onNavigate="navigate" v-for="(item, index) in getCoffee" :key="item.id" :product="item" :class="`shop__item`"/>
             </div>
           </div>
         </div>
@@ -67,17 +67,26 @@
 
 import NavbarComponent from "../components/NavbarComponent";
 import ProductCardComponent from "../components/ProductCardComponent";
+import {navigate} from "../mixins/navigate";
 export default {
   components: {NavbarComponent, ProductCardComponent},
   data(){
     return {
-
+      pageName: 'coffee'
     }
   },
   computed: {
       getCoffee(){
         return this.$store.getters['getCoffee'];
       }
+  },
+  mixins: [navigate],
+  mounted() {
+    fetch('http://localhost:3000/coffee/')
+      .then(data => data.json())
+      .then(data => {
+        this.$store.dispatch('setCoffee', data)
+      })
   }
 }
 </script>

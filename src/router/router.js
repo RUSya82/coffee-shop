@@ -6,6 +6,7 @@ import ContactsView from "../views/ContactsView";
 import GoodsPageView from "../views/GoodsPageView";
 import ThanksPageView from "../views/ThanksPageView";
 import PageNotFoundView from "../views/PageNotFoundView";
+import GoodsItemVue from "../views/GoodsItemVue";
 
 
 Vue.use(VueRouter);
@@ -15,6 +16,8 @@ const routes = [
     { path: '/contacts', component: ContactsView },
     { path: '/goods', component: GoodsPageView },
     { path: '/thanks', component: ThanksPageView },
+    { name: 'coffee', path: '/our-coffee/:id', component: GoodsItemVue },
+    { name: 'goods', path: '/goods/:id', component: GoodsItemVue },
     { path: '/:pathMatch(.*)*', component: PageNotFoundView }
 ]
 
